@@ -56,8 +56,24 @@ def fase(c1):
     return (round(math.degrees(math.atan(c1[1]/c1[0])*100))/100)
 
 class TestUM(unittest.TestCase):
+    #suma
     def test_caso_suma_1(self):
         self.assertEqual((1,3),suma((1,2),(0,1)))
+    #multiplicacion    
+    def test_caso_producto_1(self):
+        self.assertEqual((-52,-20),producto((-4,0),(13,5)))
+    def test_caso_producto_2(self):
+        self.assertEqual((1,21),producto((1,4),(5,1)))
+    #resta    
+    def test_caso_resta_1(self):
+        self.assertEqual((3,4),resta((5,4),(2,0)))
+    #division
+    def test_caso_division_1(self):
+        self.assertEqual((-1/5,8/5),division((3,2),(1,-2)))
+    def test_caso_division_2(self):
+        self.assertNotEqual((-3,-2),division((2,-3),(3,2)))
+    #modulo
+        
 
 if __name__ =='__main__':
     unittest.main()
