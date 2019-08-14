@@ -48,7 +48,16 @@ def polarAcartesiano(r,a):
 #recibe una tupla con una parte real y otra imaginaria
 #EJEMPLO --> (3,-4)
 def cartesianoApolar(c1):
-    return ("el radio es igual a "+str(round(((c1[0]**2+c1[1]**2)**0.5)*1000)/1000)+" y el angulo es igual a "+str(round(math.degrees(math.atan(c1[1]/c1[0])*100))/100))
+    b=round(math.degrees(math.atan(c1[1]/c1[0])*100))/100
+    if (c1[0]<0 and c1[1]<0):
+        b=180+b
+    elif (c1[0]>0 and c1[1]<0):
+        b=360-b
+    elif (c1[0]<0 and c1[1]>0):
+        b=180+b
+    else:
+        b=b    
+    return ("el radio es igual a "+str(round(((c1[0]**2+c1[1]**2)**0.5)*1000)/1000)+" y el angulo es igual a "+str(b))
 
 #recibe una tupla con una parte real y otra imaginaria
 #EJEMPLO --> (3,-4)
@@ -73,7 +82,20 @@ class TestUM(unittest.TestCase):
     def test_caso_division_2(self):
         self.assertNotEqual((-3,-2),division((2,-3),(3,2)))
     #modulo
-        
+    def test_caso_modulo_1(self):
+        self.assertEqual((34**0.5),modulo((3,5)))
+    #conjugado
+    def test_caso_conjugado_1(self):
+        self.assertEqual((1,-2),conjugado((1,2)))
+    #polarAcartesiano
+    def test_caso_polarAcartesiano_1(self):
+        self.assertEqual((-1,round((3**0.5)*1000)/1000),polarAcartesiano(2,120))
+    #cartesianoApolar
+    def test_caso_cartesianoApolar_1(self):
+        self.assertEqual('el radio es igual a 2.0 y el angulo es igual a 120.0',cartesianoApolar((-1,3**0.5)))
+    #fase
+    def test_caso_fase_1(self):
+        self.assertEqual(59.04,fase((3,5)))       
 
 if __name__ =='__main__':
     unittest.main()
